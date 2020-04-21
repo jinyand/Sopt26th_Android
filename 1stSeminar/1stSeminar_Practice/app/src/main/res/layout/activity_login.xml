@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    tools:context=".Main3Activity">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imgView"
@@ -23,6 +23,7 @@
         android:hint="이메일"
         android:layout_below="@+id/imgView"
         android:layout_marginTop="30dp"
+        android:inputType="text"
         />
 
     <EditText
@@ -33,6 +34,7 @@
         android:hint="비밀번호"
         android:layout_below="@+id/et_id"
         android:layout_marginTop="10dp"
+        android:inputType="textPassword"
         />
 
     <Button

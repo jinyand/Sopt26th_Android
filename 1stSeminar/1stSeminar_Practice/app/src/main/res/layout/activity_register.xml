@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context=".Main2Activity">
+    tools:context=".RegisterActivity">
 
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="90dp"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -25,6 +25,7 @@
         android:text="회원가입" />
 
     <EditText
+        android:id="@+id/et_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -33,35 +34,36 @@
         android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/et_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:autofillHints=""
         android:hint="비밀번호"
-        android:inputType="textPassword"
-        android:autofillHints="" />
+        android:inputType="textPassword" />
 
     <EditText
+        android:id="@+id/et_passcheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:hint="비밀번호 확인"
         android:inputType="textPassword" />
 
     <EditText
+        android:id="@+id/et_git"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="GitHub 닉네임"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:hint="GitHub 닉네임"
-        android:inputType="text"
-        android:importantForAutofill="no" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
         android:text="가입 완료" />
 </LinearLayout>
