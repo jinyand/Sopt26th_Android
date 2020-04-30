@@ -1,1 +1,1 @@
-# 2 Seminar Assignment
+# 2nd Seminar Assignment
