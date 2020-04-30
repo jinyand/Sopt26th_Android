@@ -26,7 +26,7 @@ class RegisterActivity : AppCompatActivity() {
             pass = et_pass.text.toString()
 
             if(et_id.text.isNullOrBlank() || et_pass.text.isNullOrBlank()) {
-                Toast.makeText(this, "아이디와 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "이메일과 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
             }
             else {
                 if(et_pass.text.toString() == et_passcheck.text.toString()) {

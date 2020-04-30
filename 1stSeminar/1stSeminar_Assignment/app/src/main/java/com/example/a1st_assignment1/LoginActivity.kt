@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
         btn_login.setOnClickListener {
 
             if(et_id.text.isNullOrBlank() || et_pass.text.isNullOrBlank()) {
-                Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "이메일과 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
             }
             else {
                 MySharedPreferences.setUserMail(this, et_id.text.toString())
