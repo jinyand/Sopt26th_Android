@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
             MySharedPreferences.clearUser(this)
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

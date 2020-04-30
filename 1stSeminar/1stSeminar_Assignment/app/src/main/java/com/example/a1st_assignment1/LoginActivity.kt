@@ -19,19 +19,16 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        btn_login.setOnClickListener {
-
-            if(et_id.text.isNullOrBlank() && et_pass.text.isNullOrBlank()) {
-                Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                MySharedPreferences.setUserMail(this, et_id.text.toString())
-                MySharedPreferences.setUserPass(this, et_id.text.toString())
-                Toast.makeText(this, "자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
-                var intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-
+        // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> Login
+        if(MySharedPreferences.getUserMail(this).isNullOrBlank()
+            || MySharedPreferences.getUserPass(this).isNullOrBlank()) {
+            Login()
+        }
+        else { // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
+            Toast.makeText(this, "${MySharedPreferences.getUserMail(this)}님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         tv_register.setOnClickListener{
@@ -40,29 +37,36 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun autoLogin() {
+    fun Login() {
 
-        if(!(MySharedPreferences.getUserMail(this).isNullOrBlank() ||
-                    MySharedPreferences.getUserPass(this).isNullOrBlank())) {
-            btn_login.setOnClickListener {
-                Toast.makeText(this, "자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(applicationContext, MainActivity::class.java)
-                startActivity(intent)
+        btn_login.setOnClickListener {
+
+            if(et_id.text.isNullOrBlank() || et_pass.text.isNullOrBlank()) {
+                Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            Toast.makeText(this, "아이디와 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
+            else {
+                MySharedPreferences.setUserMail(this, et_id.text.toString())
+                MySharedPreferences.setUserPass(this, et_id.text.toString())
+                Toast.makeText(this, "${MySharedPreferences.getUserMail(this)}님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
+                var intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }
+
     }
 
+    // onActivityResult
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100) {
+        if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 val email = data!!.getStringExtra("email")
                 val pass = data!!.getStringExtra("pass")
                 et_id.setText(email)
                 et_pass.setText(pass)
-                autoLogin()
+                Login() // RegisterActivity에서 받아와 입력된 값을 가지고 로그인
             }
         }
     }

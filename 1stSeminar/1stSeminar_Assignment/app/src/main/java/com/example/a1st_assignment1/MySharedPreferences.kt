@@ -9,7 +9,7 @@ object MySharedPreferences {
     fun setUserMail(context: Context, input: String) {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
-        editor.putString("MY_MAIL", input).apply()
+        editor.putString("MY_MAIL", input)
         editor.commit()
     }
 
@@ -21,7 +21,7 @@ object MySharedPreferences {
     fun setUserPass(context: Context, input: String) {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
-        editor.putString("MY_PASS", input).apply()
+        editor.putString("MY_PASS", input)
         editor.commit()
     }
 
