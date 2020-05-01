@@ -1,5 +1,7 @@
 # 1st Seminar Assignment
 
+![image](https://user-images.githubusercontent.com/38918396/80783643-60f17600-8bb5-11ea-8bb3-06722b18713d.png)
+
 ### [기본과제1] ConstraintLayout 심화 학습
 * __ConstraintDimentionRatio__<br>
 비율로 크기를 정하려면, width/height를 0dp(or match_constraint)로 지정하고 layout_constraintDimensionRatio 속성을 이용해 수평:수직 비율값을 준다.
