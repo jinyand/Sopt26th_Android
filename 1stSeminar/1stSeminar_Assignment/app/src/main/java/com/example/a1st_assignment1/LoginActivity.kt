@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             else {
                 MySharedPreferences.setUserMail(this, et_id.text.toString())
                 MySharedPreferences.setUserPass(this, et_id.text.toString())
-                Toast.makeText(this, "${MySharedPreferences.getUserMail(this)}님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "${MySharedPreferences.getUserMail(this)}님 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
