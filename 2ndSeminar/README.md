@@ -222,7 +222,7 @@ rv_home.addItemDecoration(RecyclerDecoration(20))
 
 ### [성장과제1] GridLayoutManager
 :memo: GridLayoutManager을 활용하여 웹툰 뷰 만들어보기  
-![image](https://user-images.githubusercontent.com/38918396/81401076-7ba18d00-9169-11ea-82f2-b7aa84258aa4.png)
+![image](https://user-images.githubusercontent.com/38918396/81402315-2024ce80-916c-11ea-8028-e86cba9ea5a4.png)
 
 * __LayoutManager__ - 배치 방향  
     - LinearLayoutManager : 세로/가로방향 배치  
