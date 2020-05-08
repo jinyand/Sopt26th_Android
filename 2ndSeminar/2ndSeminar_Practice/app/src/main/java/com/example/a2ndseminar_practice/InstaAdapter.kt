@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 class InstaAdapter(private val context : Context) : RecyclerView.Adapter<InstaViewHolder>() {
     var datas = mutableListOf<InstaData>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstaViewHolder {
+        // LayoutInflater를 이용하여 item_insta.xml을 inflate 시킨다.
+        // (참고) inflate란 ? xml에 쓰여있는 view의 정의를 실제 view객체로 만드는 역할
         val view = LayoutInflater.from(context).inflate(R.layout.item_insta, parent, false)
         return InstaViewHolder(view)
     }

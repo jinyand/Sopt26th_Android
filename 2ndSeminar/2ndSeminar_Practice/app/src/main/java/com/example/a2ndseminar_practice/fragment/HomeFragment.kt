@@ -30,9 +30,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        instaAdapter =
-            InstaAdapter(view.context)
-        rv_home.adapter = instaAdapter // 리사이클러뷰의 어댑터의 instaAdapter에 저장해줌
+        instaAdapter = InstaAdapter(view.context)
+        rv_home.adapter = instaAdapter // 리사이클러뷰의 어댑터를 instaAdapter로 지정해줌
         rv_home.addItemDecoration(RecyclerDecoration(20))
         loadDatas() // 데이터를 임의로 생성하고 어댑터에 전달
     }
@@ -41,7 +40,7 @@ class HomeFragment : Fragment() {
         datas.apply {
             add(
                 InstaData(
-                    userName = "조현진",
+                    userName = "jinyand",
                     img_profile = "https://cdn.pixabay.com/photo/2020/04/21/23/07/cat-family-5074959__340.jpg",
                     img_contents = "https://cdn.pixabay.com/photo/2020/04/22/13/57/squirrel-5078283__340.jpg"
                 )
