@@ -1,6 +1,17 @@
 # 2nd Seminar Assignment
 ![ezgif com-resize](https://user-images.githubusercontent.com/38918396/81275422-a23dc600-908c-11ea-9f71-f1755f64dae9.gif)
 
+### 라이브러리  
+* 리사이클러뷰를 다루기 위한 라이브러리  
+`implementation 'androidx.recyclerview:recyclerview:1.1.0'`  
+* material 디자인 라이브러리  
+`implementation "com.google.android.material:material:1.2.0-alpha05"`  
+* 이미지 url 로딩 라이브러리  
+`implementation "com.github.bumptech.glide:glide:4.10.0"`  
+`kapt "com.github.bumptech.glide:compiler:4.10.0"`  
+* 동그란 이미지 커스텀 뷰 라이브러리  
+`implementation 'de.hdodenhof:circleimageview:3.1.0'`  
+
 ### [기본과제1] Bottom Navigation, ViewPager 실습
 * __Bottom Navigation__  
 BottomNavigationView는 화면 하단에 포함되는 View이며, 크게 2가지 View 정의가 필요하다.  
@@ -169,7 +180,7 @@ class HomeFragment : Fragment() {
 
 }
 ```
-  
+<br>
 
 ### [기본과제2] RecyclerView의 itemDecoration, clipToPadding
 ![image](https://user-images.githubusercontent.com/38918396/81274704-9bfb1a00-908b-11ea-95da-1afd001a5cc1.png)
@@ -207,8 +218,28 @@ rv_home.addItemDecoration(RecyclerDecoration(20))
     android:paddingTop="6dp"
     android:clipToPadding="false" />
 ```
+<br>
 
 ### [성장과제1] GridLayoutManager
+:memo: GridLayoutManager을 활용하여 웹툰 뷰 만들어보기  
+![image](https://user-images.githubusercontent.com/38918396/81378129-b55e9d80-9141-11ea-927d-15d371d17472.png)
 * __LayoutManager__ - 배치 방향  
-LinearLayoutManager : 세로/가로방향 배치  
-GridLayoutManager : 바둑판 형식 배치  
+    - LinearLayoutManager : 세로/가로방향 배치  
+    - GridLayoutManager : 바둑판 형식 배치  
+
+* __GridLayoutManger__  
+GridLayoutManager(context, 한 줄에 들어가는 아이템 개수, RecyclerView.VERTICAL, false)
+```kotlin
+val myLayoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
+rv_toon.layoutManager = myLayoutManager
+```
+
+* __DividerItemDecoration으로 아이템 사이 구분선 추가__  
+    - VERTICAL : 수직 구분선
+    - HORIZONTAL : 수평 구분선
+```kotlin
+val v_decoration = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
+rv_toon.addItemDecoration(v_decoration)
+val h_decoration = DividerItemDecoration(applicationContext, LinearLayoutManager.HORIZONTAL)
+rv_toon.addItemDecoration(h_decoration)
+```
