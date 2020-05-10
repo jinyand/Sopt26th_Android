@@ -8,3 +8,10 @@
 :zap: [2차 세미나](https://github.com/jinyand/Sopt26th_Android/tree/master/2ndSeminar)
 * Bottom Navigation, ViewPager, RecyclerView
 * RecyclerView의 itemDecoration, clipToPadding
+
+:zap: [3차 세미나](https://github.com/jinyand/Sopt26th_Android/tree/master/3rdSeminar)
+* Server와 Client에 대한 이해
+* JSON
+* 동기와 비동기
+* Restful API
+* Retrofit의 활용
