@@ -1,0 +1,2 @@
+rootProject.name='3rdSeminar_Practice'
+include ':app'
