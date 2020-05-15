@@ -1,10 +1,11 @@
-package com.example.a3rdseminar_practice
+package com.example.a3rdseminar_practice.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.a3rdseminar_practice.SharedPreferences.MySharedPreferences
+import com.example.a3rdseminar_practice.R
+import com.example.a3rdseminar_practice.data.MySharedPreferences
 import com.example.a3rdseminar_practice.data.RequestRegister
 import com.example.a3rdseminar_practice.data.ResponseRegister
 import com.example.a3rdseminar_practice.network.RequestToServer

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_insta"
+        android:icon="@drawable/ic_insta_white"
+        android:title="Insta"/>
+    <item android:id="@+id/menu_webtoon"
+        android:icon="@drawable/ic_webtoon_white"
+        android:title="Toon"/>
+    <item android:id="@+id/menu_chicken"
+        android:icon="@drawable/ic_chicken_white"
+        android:title="Chicken"/>
+    <item android:id="@+id/menu_book"
+        android:icon="@drawable/ic_book_white"
+        android:title="Book"/>
+    <item android:id="@+id/menu_myinfo"
+        android:icon="@drawable/ic_myinfo_white"
+        android:title="MY"/>
+</menu>

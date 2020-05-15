@@ -1,4 +1,4 @@
-package com.example.a3rdseminar_practice.SharedPreferences
+package com.example.a3rdseminar_practice.data
 
 import android.content.Context
 import android.content.SharedPreferences

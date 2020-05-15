@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context=".RegisterActivity">
+    tools:context=".ui.RegisterActivity">
 
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         app:srcCompat="@drawable/sopt_logo" />
 
     <TextView
