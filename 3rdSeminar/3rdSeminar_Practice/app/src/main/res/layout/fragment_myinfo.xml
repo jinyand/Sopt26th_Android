@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MyinfoFragment">
+    tools:context=".ui.fragment.MyinfoFragment">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sopt_logo" />
+        app:srcCompat="@drawable/sopt_icon" />
 
     <TextView
         android:id="@+id/textView3"

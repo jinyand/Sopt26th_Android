@@ -1,15 +1,14 @@
 package com.example.a3rdseminar_practice.network
 
-import com.google.gson.Gson
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-object RequestToServer {
+object RequestBookToServer {
     var retrofit = Retrofit.Builder()
-        .baseUrl("http://13.209.144.115:3333")
+        .baseUrl("https://dapi.kakao.com")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    var service: RequestInterface = retrofit.create(RequestInterface::class.java)
+    var service: RequestBookInterface = retrofit.create(RequestBookInterface::class.java)
 }

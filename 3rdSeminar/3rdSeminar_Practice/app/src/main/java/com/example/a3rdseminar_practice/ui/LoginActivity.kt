@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.a3rdseminar_practice.R
 import com.example.a3rdseminar_practice.data.MySharedPreferences
 import com.example.a3rdseminar_practice.data.RequestLogin
 import com.example.a3rdseminar_practice.data.ResponseLogin
 import com.example.a3rdseminar_practice.network.RequestToServer
+import com.example.a3rdseminar_practice.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
             Login()
         }
         else { // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
-            Toast.makeText(this, "${MySharedPreferences.getUserId(this)}님 자동 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
+            showToast("${MySharedPreferences.getUserId(this)}님 자동 로그인 되었습니다.")
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -44,10 +44,16 @@ class LoginActivity : AppCompatActivity() {
 
     fun Login() {
 
+        et_login_id.textChangedListener {
+            if(it.isNullOrBlank()) {
+                showToast("아이디를 입력해주세요")
+            }
+        }
+
         btn_login.setOnClickListener {
 
             if(et_login_id.text.isNullOrBlank() || et_login_pass.text.isNullOrBlank()) {
-                Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
+                showToast("아이디와 비밀번호를 확인하세요")
             }
             else {
                 // 로그인 요청
@@ -56,30 +62,22 @@ class LoginActivity : AppCompatActivity() {
                         id = et_login_id.text.toString(),
                         password = et_login_pass.text.toString()
                     ) // 로그인 정보를 전달
-                ).enqueue(object : Callback<ResponseLogin>{ // Callback 등록
-                    override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
-                        // 통신 실패
-                    }
-                    override fun onResponse(
-                        call: Call<ResponseLogin>,
-                        response: Response<ResponseLogin>
-                    ) {
-                        // 통신 성공
-                        if(response.isSuccessful) { // statusCode가 200-300 사이일 떄. 응답 body 이용 가능
-                            if(response.body()!!.success) { // ResponseLogin의 Success가 true일 경우
-                                MySharedPreferences.setUserId(this@LoginActivity, et_login_id.text.toString())
-                                MySharedPreferences.setUserPass(this@LoginActivity, et_login_pass.text.toString())
-                                Toast.makeText(this@LoginActivity, "${MySharedPreferences.getUserId(this@LoginActivity)}님 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
-                                var intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Toast.makeText(this@LoginActivity, "아이디와 비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show()
-                            }
+                ).customEnqueue(
+                    onError = {showToast("올바르지 못한 요청입니다")},
+                    onSuccess = {
+                        if(it.success) {
+                            MySharedPreferences.setUserId(this@LoginActivity, et_login_id.text.toString())
+                            MySharedPreferences.setUserPass(this@LoginActivity, et_login_pass.text.toString())
+                            showToast("${MySharedPreferences.getUserId(this@LoginActivity)}님 로그인 되었습니다.")
+                            var intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            showToast("아이디와 비밀번호를 확인하세요")
                         }
                     }
+                )
 
-                })
             }
 
         }

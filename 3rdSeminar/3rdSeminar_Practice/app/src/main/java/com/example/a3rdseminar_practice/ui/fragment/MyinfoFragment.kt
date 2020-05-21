@@ -1,4 +1,4 @@
-package com.example.a3rdseminar_practice.fragment
+package com.example.a3rdseminar_practice.ui.fragment
 
 import android.content.Context
 import android.content.Intent

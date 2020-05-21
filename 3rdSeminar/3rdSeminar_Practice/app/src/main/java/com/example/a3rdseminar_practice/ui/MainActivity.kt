@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.example.a3rdseminar_practice.R
 import com.example.a3rdseminar_practice.data.MySharedPreferences
-import com.example.a3rdseminar_practice.fragment.MainPagerAdapter
+import com.example.a3rdseminar_practice.ui.fragment.MainPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

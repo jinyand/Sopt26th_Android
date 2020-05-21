@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">3rdSeminar_Practice</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="kakaoAPI">KakaoAK 281d070cd5f2332ca0795d087784a243</string>
 </resources>
