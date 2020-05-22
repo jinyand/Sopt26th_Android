@@ -1,5 +1,7 @@
 # 3rd Seminar Assignment
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/38918396/82656613-0355c400-9c5f-11ea-9fae-a8dd2541a590.gif)
+
 ### [기본과제 1] 로그인, 회원가입 부분 Retrofit을 이용하여 서버와 통신하기
 
 ### :bulb: JSON
@@ -25,7 +27,8 @@
   
 ### :bulb: Retrofit의 활용
 * Retrofit 공식 문서 http://devflow.github.io/retrofit-kr/  
-1. 라이브러리 추가
+
+**1. 라이브러리 추가**
   * Retrofit 라이브러리 : https://github.com/square/retrofit  
   `implementation 'com.squareup.retrofit2:retrofit:2.6.2`  
   * Retrofit 라이브러리 응답으로 가짜 객체를 만들기 위해  
@@ -35,7 +38,7 @@
   * Retrofit 에서 Gson 을 사용하기 위한 라이브러리  
   `implementation 'com.squareup.retrofit2:converter-gson:2.6.2`
 
-2. API에 따른 Request / Response 객체 설계
+**2. API에 따른 Request / Response 객체 설계**
   
 < RequestResister.kt >
 ```kotlin
@@ -56,7 +59,7 @@ data class RequestRegister(
   )
   ```
 
-3. Retrofit Interface 설계
+**3. Retrofit Interface 설계**
 
 < RequestInterface.kt >
 ```kotlin
@@ -66,7 +69,7 @@ interface RequestInterface{
 }
 ```
 
-4. Retrofit Interface 실제 구현체 만들기
+**4. Retrofit Interface 실제 구현체 만들기**
   
 < RequestToServer.kt >
 ```kotlin
@@ -84,7 +87,7 @@ object RequestToServer {
 }
 ```
 
-5. Callback 등록, 통신 요청
+**5. Callback 등록, 통신 요청**
   * `Call<Type>` : 비동기적으로 Type 을 받아오는 객체
   * `Callback<Type>` : Type 객체를 받아왔을 때, 프로그래머가 할 행동
   
@@ -121,6 +124,94 @@ object RequestToServer {
     }
 })
 ```
-
+<br>
 
 ### [기본과제 2] 1·2·3차 세미나를 하나의 프로젝트로 합치기
+* 패키지는 소문자, 클래스 첫 글자는 대문자로 설정
+![image](https://user-images.githubusercontent.com/38918396/82649394-1747f880-9c54-11ea-9ae8-1ee1af2ea841.png)
+<br>
+
+### [성장과제] 카카오 OPEN API를 이용해 책 리스트 불러오기
+* [카카오 책 검색 API](https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-book)
+
+**1. 책 검색 API에서 받아올 데이터를 가지고 Response 객체 생성**  
+
+| Name | Type | Description |
+|:---|:---|:---|
+| title	| String	| 도서 제목 |
+| contents |	String |	도서 소개 |
+| authors |	String[] |	도서 저자 리스트 |
+| thumbnail	| String	| 도서 표지 미리보기 URL |
+
+```kotlin
+data class ResponseBook (
+    val documents : List<ResponseBookData>
+)
+
+data class ResponseBookData(
+    val title : String,
+    val contents : String,
+    val authors : Array<String>,
+    val thumbnail : String
+)
+```
+
+**2. Retrofit Interface 설계**
+* GET 방식으로 Header에 REST API key를 담아 요청한다.
+* REST API key 값은 보안을 위해 코드에 넣지 않고 나중에 string에서 받아온다.
+* query는 검색 질의어가 되는 파라미터로 필수이다.
+
+![image](https://user-images.githubusercontent.com/38918396/82650640-eff22b00-9c55-11ea-9a69-e60e3fbe5200.png)
+```kotlin
+interface RequestBookInterface{
+    @GET("/v3/search/book")
+    fun requestBook(
+        @Query("query") title : String,
+        @Header("Authorization") key : String
+    ): Call<ResponseBook>
+}
+```
+
+**3. Retrofit Interface 실제 구현체 만들기**
+* 기본과제1의 설명과 동일
+```kotlin
+object RequestBookToServer {
+    var retrofit = Retrofit.Builder()
+        .baseUrl("https://dapi.kakao.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    var service: RequestBookInterface = retrofit.create(RequestBookInterface::class.java)
+}
+```
+
+**4. Callback 등록, 통신 요청**
+* 2차 세미나의 내용을 토대로 리사이클러뷰를 생성한다.
+* 이전에는 Adapter 내에서 데이터를 임의로 생성하여 전달했다면,  
+이번에는 Adapter의 파라미터로 서버에서 받아온 data를 함께 전달한다.
+* Adapter : `class BookAdapter(private val context : Context, val datas: List<ResponseBookData>)`
+```kotlin
+fun loadDatas() {
+        requestToBookServer.service.requestBook(
+            title = et_search.text.toString(),
+            key = getString(R.string.kakaoAPI)
+        ).enqueue(object : Callback<ResponseBook>{
+            override fun onFailure(call: Call<ResponseBook>, t: Throwable) {
+                ...
+            }
+            override fun onResponse(
+                call: Call<ResponseBook>,
+                response: Response<ResponseBook>
+            ) {
+                // 통신 성공
+                if(response.isSuccessful) {
+                    bookAdapter  = BookAdapter(view!!.context, response!!.body()!!.documents)
+                    rv_book.adapter = bookAdapter
+                    bookAdapter.notifyDataSetChanged()
+                } else {
+                    Log.e("통신 오류", response.message())
+                }
+            }
+        })
+    }
+```
