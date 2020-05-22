@@ -13,7 +13,6 @@ import com.example.a3rdseminar_practice.data.ResponseBookData
 import com.example.a3rdseminar_practice.network.RequestBookToServer
 import com.example.a3rdseminar_practice.recycler.RecyclerDecoration
 import com.example.a3rdseminar_practice.recycler.book.BookAdapter
-import com.example.a3rdseminar_practice.ui.textChangedListener
 import kotlinx.android.synthetic.main.fragment_book.*
 import retrofit2.Call
 import retrofit2.Callback
