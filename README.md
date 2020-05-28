@@ -15,3 +15,8 @@
 * 동기와 비동기
 * Restful API
 * Retrofit의 활용
+
+:zap: [4차 세미나](https://github.com/jinyand/Sopt26th_Android/tree/master/4thSeminar)
+* 확장함수의 활용
+* 라이브 템플릿
+* 제플린을 활용한 협업
