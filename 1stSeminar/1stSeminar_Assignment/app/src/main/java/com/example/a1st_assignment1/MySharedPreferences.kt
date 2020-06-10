@@ -15,7 +15,7 @@ object MySharedPreferences {
 
     fun getUserMail(context: Context): String {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        return prefs.getString("MY_MAIL", "")!!
+        return prefs.getString("MY_MAIL", "").toString()
     }
 
     fun setUserPass(context: Context, input: String) {
