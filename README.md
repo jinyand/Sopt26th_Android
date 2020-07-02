@@ -24,4 +24,3 @@
 :zap: [5차, 6차 세미나](https://github.com/RoadtoS7/ClientAndDesignSeminar)
 * 5차 : 클라이언트 & 디자인 합동 세미나
 * 6차 : 클라이언트 & 서버 합동 세미나
-* 중고나라 앱 구현
